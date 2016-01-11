@@ -1,0 +1,1 @@
+export { default } from 'ember-lenddo/components/lenddo-button';
