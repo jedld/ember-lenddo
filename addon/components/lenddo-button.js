@@ -1,9 +1,10 @@
 import Ember from 'ember';
-import ENV from '../config/environment';
+import ENV from 'ember-get-config';
+import layout from '../templates/components/lenddo-button';
 
 export default Ember.Component.extend({
   clientId: null,
-  partnerScriptId: ENV.APP.lenddo.partnerScriptId,
+  partnerScriptId: ENV.lenddo.partnerScriptId,
   verificationFields: {
     firstName: null,
     middleName: null,
@@ -15,4 +16,5 @@ export default Ember.Component.extend({
     university: null,
   },
   mode: 'popup',
+  layout: layout,
 });
