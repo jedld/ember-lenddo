@@ -15,12 +15,15 @@ ENV['lenddo'] = {
 };
 ```
 
-If you are using ember-cli-content-security-policy, be sure to add the necessary domains as well, for example:
+If you are using ember-cli-content-security-policy, be sure to add the necessary domains as well, see below for an example:
 
 ```javascript
 ENV['contentSecurityPolicy'] = {
 ...
-    'connect-src': "'self' partnerevents.lenddo.com authorize.partner-service.link .... ",
+  'script-src':  "'self' 'unsafe-inline' 'unsafe-eval' authorize.partner-service.link partnerevents.lenddo.com",
+  'connect-src': "'self' partnerevents.lenddo.com authorize.partner-service.link",
+  'img-src':     "'self' data: authorize.partner-service.link",
+  'style-src':   "'self' authorize.partner-service.link",
   };
 ```
 
