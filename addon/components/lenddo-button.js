@@ -4,7 +4,11 @@ import layout from '../templates/components/lenddo-button';
 
 export default Ember.Component.extend({
   clientId: null,
+  buttonType: 'blue_get_verified',
+  tooltip: null,
+  text: 'Verify with Lenddo',
   partnerScriptId: ENV.lenddo.partnerScriptId,
+  fbRedirect: false,
   verificationFields: {
     firstName: null,
     middleName: null,
