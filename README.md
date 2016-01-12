@@ -1,5 +1,5 @@
 # Ember-lenddo
-This addon allows you to add the lenddo button as a component for your ember-cli application
+This addon allows you to add the lenddo button as a component for your ember-cli application. This addon implements a simple wrapper around the create button code script found [Here](https://partners.lenddo.com/create_button_code):
 
 ## Installation
 - `git clone` this repository
@@ -44,7 +44,7 @@ fb_redirect | false                 | etermines button behavior when clicked. Se
 text        | Verify with Verifi.Me |                                                                                                                                           Caption shown in the button.
 mode        | popup                 |                                  Form submission behavior. Determines whether the Authorize process opens in a popup window (default) or redirects from the same page.
 
-Note: Refer to your Lenddo documentation for more details
+Note: Refer to the Lenddo documentation for more details on how the various values work as this is beyond the scope of this document.
 
 The verificationFields should look something like:
 
