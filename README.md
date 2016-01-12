@@ -28,8 +28,20 @@ ENV['contentSecurityPolicy'] = {
 Inside a handlebars template, simply include the lenddo-button component:
 
 ```html
-{{ lenddo-button cientId=clientId verificationFields=verificationFields mode='popup' }}
+{{ lenddo-button cientId=clientId verificationFields=verificationFields }}
 ```
+
+There are various options that you can pass:
+
+Option      | Default               | Description
+----------- | :-------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------:
+tooltip     |                       |                                                                                                                          Text displayed when hovering over the button.
+name        | blue_get_verified     |                                                  Type of Lenddo button to be used. Possible options are: fb_button, blue_button, blue_get_verified, blue_green_button.
+fb_redirect | false                 | etermines button behavior when clicked. Set to true to proceed directly to the Facebook login page; false to redirect to the Authorize landing page. Default is false.
+text        | Verify with Verifi.Me |                                                                                                                                           Caption shown in the button.
+mode        | popup                 |                                  Form submission behavior. Determines whether the Authorize process opens in a popup window (default) or redirects from the same page.
+
+Note: Refer to your Lenddo documentation for more details
 
 The verificationFields should look something like:
 
