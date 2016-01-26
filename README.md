@@ -63,6 +63,13 @@ verificationFields: {
 
 refer to [https://partners.lenddo.com/create_button_code](https://partners.lenddo.com/create_button_code) for details.
 
+## Actions
+You can hook onto the onClick action if you want to be notified if the Lenddo button was clicked.
+
+```html
+{{ lenddo-button cientId=clientId verificationFields=verificationFields onClick="someActionThatNeedsToBeCalled"}}
+```
+
 ## Running Tests
 - `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
 - `ember test`

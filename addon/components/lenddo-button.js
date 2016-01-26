@@ -42,7 +42,10 @@ export default Ember.Component.extend({
         university: `${this.get('verificationFields.university')}`
       },
       onSubmit: function(cb) {
-        _this.sendAction('onClick', this);
+        Ember.run(function() {
+          _this.sendAction('onClick', this);
+        });
+
         var errors = false;
         if (errors === false) {
           cb();
