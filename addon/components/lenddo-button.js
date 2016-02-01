@@ -21,6 +21,7 @@ export default Ember.Component.extend({
   },
   mode: 'popup',
   layout: layout,
+
   emptyStringIfNull(value) {
     if (value === null) {
       return '';
@@ -30,6 +31,15 @@ export default Ember.Component.extend({
   },
 
   didInsertElement() {
+    let la = document.createElement('script');
+    la.type = 'text/javascript';
+    la.async = true;
+    la.src = 'https://authorize.partner-service.link/verify.js?v=' + Date.now();
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(la, s);
+  },
+
+  didReceiveAttrs() {
     let _this = this;
     window.LenddoVerifyConfig = {
       action: this.get('mode'),
@@ -39,14 +49,14 @@ export default Ember.Component.extend({
       fb_redirect: this.get('fbRedirect'),
       verificationFields: {
         /* sample verification field values */
-        firstname:  _this.emptyStringIfNull(this.get('verificationFields.firstName')),
-        middlename: _this.emptyStringIfNull(this.get('verificationFields.middleName')),
-        lastname: _this.emptyStringIfNull(this.get('verificationFields.lastName')),
-        birthdate: this.get('verificationFields.birthDate'),
-        email: this.get('verificationFields.email'),
-        employer: _this.emptyStringIfNull(this.get('verificationFields.employer')),
-        mobilephone: this.get('verificationFields.mobileNumber'),
-        university: this.get('verificationFields.university'),
+        firstname:  this.emptyStringIfNull(this.get('verificationFields.firstName')),
+        middlename: this.emptyStringIfNull(this.get('verificationFields.middleName')),
+        lastname: this.emptyStringIfNull(this.get('verificationFields.lastName')),
+        birthdate: this.emptyStringIfNull(this.get('verificationFields.birthDate')),
+        email: this.emptyStringIfNull(this.get('verificationFields.email')),
+        employer: this.emptyStringIfNull(this.get('verificationFields.employer')),
+        mobilephone: this.emptyStringIfNull(this.get('verificationFields.mobileNumber')),
+        university: this.emptyStringIfNull(this.get('verificationFields.university')),
       },
       onSubmit: function(cb) {
         Ember.run(function() {
@@ -59,12 +69,11 @@ export default Ember.Component.extend({
         }
       },
     };
+  },
 
-    let la = document.createElement('script');
-    la.type = 'text/javascript';
-    la.async = true;
-    la.src = 'https://authorize.partner-service.link/verify.js?v=' + Date.now();
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(la, s);
+  willDestroyElement() {
+    if (window.LenddoVerifyConfig) {
+      window.LenddoVerifyConfig = null;
+    }
   },
 });
