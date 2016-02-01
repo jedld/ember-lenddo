@@ -21,25 +21,32 @@ export default Ember.Component.extend({
   },
   mode: 'popup',
   layout: layout,
+  emptyStringIfNull(value) {
+    if (value === null) {
+      return '';
+    };
+
+    return value;
+  },
 
   didInsertElement() {
     let _this = this;
     window.LenddoVerifyConfig = {
-      action: `${this.get('mode')}`,
-      scriptId: `${this.get('partnerScriptId')}`,
-      clientId: `${this.get('clientId')}`,
-      name: `${this.get('buttonType')}`,
+      action: this.get('mode'),
+      scriptId: this.get('partnerScriptId'),
+      clientId: this.get('clientId'),
+      name: this.get('buttonType'),
       fb_redirect: this.get('fbRedirect'),
       verificationFields: {
         /* sample verification field values */
-        firstname:  `${this.get('verificationFields.firstName')}`,
-        middlename: `${this.get('verificationFields.middleName')}`,
-        lastname: `${this.get('verificationFields.lastName')}`,
-        birthdate: `${this.get('verificationFields.lastName')}`,
-        email: `${this.get('verificationFields.email')}`,
-        employer: `${this.get('verificationFields.employer')}`,
-        mobilephone: `${this.get('verificationFields.mobileNumber')}`,
-        university: `${this.get('verificationFields.university')}`
+        firstname:  _this.emptyStringIfNull(this.get('verificationFields.firstName')),
+        middlename: _this.emptyStringIfNull(this.get('verificationFields.middleName')),
+        lastname: _this.emptyStringIfNull(this.get('verificationFields.lastName')),
+        birthdate: this.get('verificationFields.birthDate'),
+        email: this.get('verificationFields.email'),
+        employer: _this.emptyStringIfNull(this.get('verificationFields.employer')),
+        mobilephone: this.get('verificationFields.mobileNumber'),
+        university: this.get('verificationFields.university'),
       },
       onSubmit: function(cb) {
         Ember.run(function() {
